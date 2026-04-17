@@ -30,6 +30,13 @@ This runner defaults to CI-safe settings:
 ## GitHub Actions schedule
 - Daily at `6:00 PM IST`
 - Workflow cron: `30 12 * * *` (GitHub Actions cron is UTC, so `12:30 UTC = 6:00 PM IST`)
+- After each run, the workflow updates:
+  - this repo: `reports/extent-report.html`
+  - report repo: `dailyreports-/solwerDailyReports/extent-report.html`
+
+## GitHub Actions secret
+- Add repository secret `DAILY_REPORTS_PAT` in `solwerbetawebdailyrun`
+- Use a GitHub PAT that has write access to `ArunvLB/dailyreports-`
 
 ## Key paths
 - Config: `src/test/resources/config.properties`

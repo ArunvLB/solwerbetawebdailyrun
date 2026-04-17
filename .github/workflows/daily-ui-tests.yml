@@ -59,6 +59,32 @@ jobs:
           git commit -m "Update daily extent report"
           git push
 
+      - name: Checkout daily reports repository
+        if: always()
+        uses: actions/checkout@v4
+        with:
+          repository: ArunvLB/dailyreports-
+          token: ${{ secrets.DAILY_REPORTS_PAT }}
+          path: dailyreports-target
+
+      - name: Publish extent report to daily reports repository
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p dailyreports-target/solwerDailyReports
+          cp reports/extent-report.html dailyreports-target/solwerDailyReports/extent-report.html
+
+          cd dailyreports-target
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add solwerDailyReports/extent-report.html
+          if git diff --cached --quiet; then
+            echo "No daily report changes to commit."
+            exit 0
+          fi
+          git commit -m "Update solwer daily extent report"
+          git push
+
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
