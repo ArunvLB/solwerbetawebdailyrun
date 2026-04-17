@@ -1,0 +1,95 @@
+Project: Solwer Automation Framework
+Type: Maximum Coverage & Quality-Based Automation Master Plan
+Strategy: Consolidate structural behaviors to achieve 100% functional coverage using robust, repeating test flows.
+
+==================================================
+MODULE 1: GLOBAL NAVIGATION & STRUCTURAL INTEGRITY
+Goal: Ensure the overarching skeleton of the application works flawlessly from the Home Page.
+
+FLOW 1: Header Dropdown Matrix Validation
+1. Start at Home Page.
+2. Hover over "Solutions" -> Verify all 8+ sub-links render. Iterate and click randomly to verify 200 OK navigation, then return via Logo click.
+3. Hover over "Digital Tools" -> Verify all sub-links render. Click one to verify navigation, then return via Logo click.
+4. Hover over "E-Learning Modules" -> Ensure "Programs" and "Blogs" are clickable.
+
+FLOW 2: Footer Deep-Linking & Compliance
+1. Scroll to the absolute bottom bounds of the Home Page.
+2. Validate "Privacy Policy" and "Terms of Service" rendering.
+3. Click "Contact Us" routing from the footer and verify map/address integrations load.
+4. Return to Home Page.
+
+==================================================
+MODULE 2: DYNAMIC LEAD GENERATION FORMS
+Goal: Test all pathways where the user submits data to the platform natively from the Home flow.
+
+FLOW 3: Iterative Solutions "Book Demo" Engine
+1. Start at Home Page.
+2. Navigate to Solutions Overview.
+3. Dynamically loop through EVERY solution card available on the page.
+4. For each: Click "Book Demo" -> Fill out the floating modal/form securely -> Click Submit -> Handle Success -> Detect Context (Modal close vs Page back).
+5. Ensure 100% of solutions accept demo requests without Stale Exceptions. Return Home.
+
+FLOW 4: Digital Tools "Try Now" Engine
+1. Start at Home Page.
+2. Navigate to Digital Tools Overview.
+3. Dynamically iterate through EVERY listed tool.
+4. For each: Click "Try Now" -> Fill payload -> Submit -> Process Return.
+5. Return Home.
+
+FLOW 5: Corporate Engagement (Join Us & Contact)
+1. Navigate to "Join Us". Verify open positions tab is accessible. 
+2. Submit a dummy candidate application (Test file upload if present). Return Home.
+3. Navigate to "Contact Us". Fill the standard contact inquiry. Return Home.
+
+==================================================
+MODULE 3: KNOWLEDGE BASE & CONTENT EXPLORATION
+Goal: Verify the content distribution network (News, Blogs, Programs).
+
+FLOW 6: Blog & News Archival Exploration
+1. Navigate to E-Learning -> Blogs.
+2. Store the count of all visible Blog Cards on page 1.
+3. Click into Blog #1 -> Validate Title/Body/Author presence. Return Back.
+4. Click into Blog #2 -> Validate Title/Body/Author presence. Return Back.
+5. Navigate to News -> Execute identical validation for News cards. Return Home.
+
+FLOW 6.5: Asset Download Pipeline (Brochures & Case Studies)
+1. Start at Home.
+2. Locate the "Brochure" block natively.
+3. Fill down prerequisite form locks (Name, Email).
+4. Intercept the Document Download Trigger (Verify MIME type or PDF render).
+5. Return Home securely.
+
+==================================================
+MODULE 4: EXTERNAL CONTEXTS & MULTI-TAB SWITCHING
+Goal: Verify handles transitioning between Solwer infrastructure and third-party hosted elements.
+
+FLOW 7: Third-Party Media (YouTube / Viddler)
+1. Start at Home.
+2. Click on the Corporate Video Element.
+3. Wait for new Tab/Window to spawn.
+4. Switch Webdriver Context to Child Tab -> Verify URL contains 'youtube' or 'youtu.be'.
+5. Capture Context Screenshot.
+6. Close Tab -> Revert to Main Window -> Return to Home.
+
+FLOW 8: Social Media Validation
+1. Scroll to Home Footer.
+2. Click LinkedIn Icon -> Switch to newly opened tab -> Verify URL contains 'linkedin.com/company/solwer'. Close and return context.
+3. Click Twitter/X Icon -> Switch Context -> Verify URL -> Close and return.
+
+==================================================
+MODULE 5: DYNAMIC UI INTERACTION (WIDGETS & POPUPS)
+Goal: Ensure floating elements and transient UI behaviors work flawlessly.
+
+FLOW 9: Ad-Hoc Widgets (Newsletter & Chat)
+1. Start at Home.
+2. Evaluate Footer "Subscribe to Newsletter" -> Submit invalid email -> Verify Email Validation Error.
+3. Submit valid email -> Verify Success State.
+4. Scan DOM for Floating Action Buttons (FAB - e.g., WhatsApp toggle).
+5. Click FAB -> Verify Chat context initiates. Hide/Close widget. Return Home.
+
+FLOW 10: Dynamic Interaction (Carousels/Sliders)
+1. Start at the Home Page.
+2. Scroll to the main feature banners, client testimonials, or Partner carousels.
+3. Click on the "Next" (>) and "Previous" (<) arrow controls of the carousel.
+4. Verify the slider transitions seamlessly without throwing visibility exceptions.
+5. Return to the Home Page.

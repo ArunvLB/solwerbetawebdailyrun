@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.slower</groupId>
+  <artifactId>selenium-automation-framework</artifactId>
+  <version>1.0.0</version>
+  <name>Selenium Automation Framework</name>
+
+  <properties>
+    <!-- Latest widely-supported LTS for Selenium ecosystem -->
+    <java.version>21</java.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <selenium.version>4.22.0</selenium.version>
+    <testng.version>7.10.2</testng.version>
+    <wdm.version>5.8.0</wdm.version>
+    <extentreports.version>5.1.1</extentreports.version>
+    <log4j2.version>2.23.1</log4j2.version>
+    <surefire.version>3.3.1</surefire.version>
+    <compiler.version>3.13.0</compiler.version>
+    <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+
+    <!-- Runtime defaults (override via -D...) -->
+    <env>QA</env>
+    <browser>chrome</browser>
+    <headless>true</headless>
+    <slowmo.ms>0</slowmo.ms>
+    <keep.browser.open>false</keep.browser.open>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${wdm.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>${extentreports.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+    </dependency>
+
+    <!-- For Video Recording -->
+    <dependency>
+      <groupId>com.github.stephenc.monte</groupId>
+      <artifactId>monte-screen-recorder</artifactId>
+      <version>0.7.7.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler.version}</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+          <fork>true</fork>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+          <argLine>
+            -Denv=${env}
+            -Dbrowser=${browser}
+            -Dheadless=${headless}
+            -Dslowmo.ms=${slowmo.ms}
+            -Dkeep.browser.open=${keep.browser.open}
+          </argLine>
+          <systemPropertyVariables>
+            <file.encoding>${project.build.sourceEncoding}</file.encoding>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

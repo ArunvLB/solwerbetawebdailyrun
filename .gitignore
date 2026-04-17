@@ -1,0 +1,14 @@
+target/
+.m2/
+.idea/
+.vscode/
+*.iml
+tools/
+mvn-x.log
+run-debug.log
+
+# Optional (keep dirs via .gitkeep)
+reports/*.html
+reports/*.log
+screenshots/*.png
+recordings/*.avi

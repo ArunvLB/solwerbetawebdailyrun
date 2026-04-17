@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Automation Suite" parallel="methods" thread-count="2">
+  <listeners>
+    <listener class-name="com.slower.framework.listeners.TestListener"/>
+    <listener class-name="com.slower.framework.listeners.RetryTransformer"/>
+  </listeners>
+
+  <test name="UI Tests">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="env" value="QA"/>
+    <classes>
+      <class name="com.slower.framework.tests.HomeHappyPathTest"/>
+      <class name="com.slower.framework.tests.HomeVideosTest"/>
+      <class name="com.slower.framework.tests.SolutionsBookDemoTest"/>
+      <class name="com.slower.framework.tests.DigitalToolsTryMeTest"/>
+      <class name="com.slower.framework.tests.HomeBrochureTest"/>
+      <class name="com.slower.framework.tests.HomeNewsTest"/>
+      <class name="com.slower.framework.tests.HomeELearningProgramsTest"/>
+      <class name="com.slower.framework.tests.HomeELearningBlogsTest"/>
+      <class name="com.slower.framework.tests.HomeJoinUsTest"/>
+      <class name="com.slower.framework.tests.HomeContactUsTest"/>
+      <!-- Phase 2: Maximum Coverage Flows -->
+      <class name="com.slower.framework.tests.HomeHeaderDropdownsTest"/>
+      <class name="com.slower.framework.tests.HomeFooterLinksTest"/>
+      <class name="com.slower.framework.tests.HomeSocialMediaTest"/>
+      <class name="com.slower.framework.tests.HomeWidgetsTest"/>
+      <class name="com.slower.framework.tests.HomeCarouselTest"/>
+    </classes>
+  </test>
+</suite>
