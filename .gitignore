@@ -9,6 +9,7 @@ run-debug.log
 
 # Optional (keep dirs via .gitkeep)
 reports/*.html
+!reports/extent-report.html
 reports/*.log
 screenshots/*.png
 recordings/*.avi

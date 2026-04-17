@@ -34,14 +34,16 @@ public final class ExtentManager {
 
         String reportPath = reportsDir.resolve("extent-report.html").toString();
         ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
-        spark.config().setDocumentTitle("Automation Report");
-        spark.config().setReportName("Selenium TestNG Automation");
+        spark.config().setDocumentTitle("Daily Automation Report - 6:00 PM IST");
+        spark.config().setReportName("Selenium TestNG Automation - Daily 6:00 PM IST");
         spark.config().setTheme(Theme.STANDARD);
 
         extent = new ExtentReports();
         extent.attachReporter(spark);
         extent.setSystemInfo("Environment", ConfigReader.getEnvironment());
         extent.setSystemInfo("Browser", ConfigReader.getBrowser());
+        extent.setSystemInfo("Schedule", "Daily at 6:00 PM IST");
+        extent.setSystemInfo("Run Source", ConfigReader.isCi() ? "GitHub Actions" : "Local");
     }
 
     public static synchronized void flush() {
@@ -50,4 +52,3 @@ public final class ExtentManager {
         }
     }
 }
-

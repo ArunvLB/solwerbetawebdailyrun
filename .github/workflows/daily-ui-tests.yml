@@ -5,6 +5,13 @@ on:
   schedule:
     - cron: "30 12 * * *"
 
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-ui-tests
+  cancel-in-progress: false
+
 jobs:
   ui-tests:
     runs-on: ubuntu-latest
@@ -38,11 +45,25 @@ jobs:
           BROWSER_BINARY_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}
         run: bash scripts/run-ci.sh
 
+      - name: Commit latest extent report
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/extent-report.html
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+            exit 0
+          fi
+          git commit -m "Update daily extent report"
+          git push
+
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ui-test-artifacts
+          name: ui-test-artifacts-${{ github.run_number }}
           path: |
             reports
             screenshots
